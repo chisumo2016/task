@@ -22,8 +22,10 @@
         Act as middleman btn frontend and backend 
 
         User ----    API  --------
-    . how to create  api ?
+    . how to create  api route?
     . how to generate api token for web/mobile apps.
     . how to generate api for SPA (React ,Vue and Angular)
     . How to authenticated API using Laravel Sanctum .
     . How to authorize user in API
+
+        php artisan make:resource TaskResource
