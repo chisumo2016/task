@@ -29,3 +29,5 @@
     . How to authorize user in API
 
         php artisan make:resource TaskResource
+        php artisan make:request API/TaskRequest eg customs rule
+        
