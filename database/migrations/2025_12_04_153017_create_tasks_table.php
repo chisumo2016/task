@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
+
             $table->tinyInteger('status');
 
             $table->foreignId('user_id')->constrained('users');

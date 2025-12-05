@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\TaskRequest;
+use App\Http\Requests\API\TaskUpdateRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::paginate(2);
 
         return TaskResource::collection($tasks);
 
@@ -28,37 +29,48 @@ class TaskController extends Controller
     public function store(TaskRequest $request)
     {
         Task::create([
-            'name'   => $request->name,
+            'name' => $request->name,
             'status' => $request->status,
             'user_id' => $request->user_id,
         ]);
 
         return response()->json([
             'message' => 'Task created successfully',
-        ],201);
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        //
+        return TaskResource::make($task);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+
+        ]);
+
+        $task->update($validated);
+
+        return new TaskResource($task);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return response()->json([
+            'message' => 'Task deleted successfully',
+        ]);
     }
 }
