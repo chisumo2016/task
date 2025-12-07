@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V2;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\TaskRequest;
-use App\Http\Requests\API\TaskUpdateRequest;
+use App\Http\Requests\API\V1\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -16,7 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate(2);
+        $user = auth()->user();  //request()->user()
+
+        $tasks = Task::where('user_id', $user->id)->paginate(2);
 
         return TaskResource::collection($tasks);
 
@@ -44,7 +45,9 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return TaskResource::make($task);
+        $user = auth()->user();  //request()->user()
+        
+        return TaskResource::make(Task::where('user_id' , $user->id)->first());
     }
 
     /**

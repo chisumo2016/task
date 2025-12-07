@@ -32,5 +32,13 @@
         php artisan make:request API/TaskRequest eg customs rule
 
 # APPLY LARAVEL SANCTUM MIDDLEWARE ON ROUTE AND GENERATE ACCESS TOKEN
+# LOGIN USER AND GENERATE TOKEN FOR AUTHENTICATION
+# LOGOUT USER IN SANCTUM LARAVEL API
+# CREATE V2 API FOR AUTHENTICATED USER
+        . middleman
+        . gate
+        . policy recommended
+             php artisan make:policy TaskPolicy
+# APPLY AUTHORIZATION USING LARAVEL POLICIES TO PROTECT TEH 
     
         
