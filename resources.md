@@ -30,4 +30,7 @@
 
         php artisan make:resource TaskResource
         php artisan make:request API/TaskRequest eg customs rule
+
+# APPLY LARAVEL SANCTUM MIDDLEWARE ON ROUTE AND GENERATE ACCESS TOKEN
+    
         
