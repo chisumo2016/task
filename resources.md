@@ -39,6 +39,7 @@
         . gate
         . policy recommended
              php artisan make:policy TaskPolicy
-# APPLY AUTHORIZATION USING LARAVEL POLICIES TO PROTECT TEH 
+# APPLY AUTHORIZATION USING LARAVEL POLICIES TO PROTECT THE OTHER USER TASKS
+        
     
         
